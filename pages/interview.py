@@ -107,7 +107,7 @@ def interview():
         return
 
     elif st.session_state.interview_page == "technical":
-        technical_round.technical_round()
+        technical_round.technical()
 
         if st.button("← Back to Interview Guide"):
             st.session_state.interview_page = "guide"
