@@ -394,9 +394,7 @@ def mock():
 
         st.write("")
 
-        # ---------------------------------------------
-        # FEATURES
-        # ---------------------------------------------
+       
 
         st.markdown("Mock Interview Features")
 
@@ -434,9 +432,6 @@ def mock():
         st.write("")
 
 
-        # ---------------------------------------------
-        # START
-        # ---------------------------------------------
 
         if st.button(
             "Start Mock Interview",
@@ -590,9 +585,7 @@ Use exactly this format:
         return
 
 
-    # =====================================================
-    # ACTIVE INTERVIEW
-    # =====================================================
+
 
     questions = st.session_state.mock_questions
 
@@ -601,9 +594,6 @@ Use exactly this format:
     total_questions = len(questions)
 
 
-    # =====================================================
-    # FINISH CHECK
-    # =====================================================
 
     if current >= total_questions:
 
@@ -612,9 +602,6 @@ Use exactly this format:
         st.rerun()
 
 
-    # =====================================================
-    # CURRENT QUESTION
-    # =====================================================
 
     question_data = questions[current]
 
@@ -634,10 +621,6 @@ Use exactly this format:
     )
 
 
-    # =====================================================
-    # PROGRESS
-    # =====================================================
-
     st.markdown(
         f"Question {current + 1} of {total_questions}"
     )
@@ -647,9 +630,7 @@ Use exactly this format:
     )
 
 
-    # =====================================================
-    # QUESTION
-    # =====================================================
+
 
     with st.container(border=True):
 
@@ -679,9 +660,7 @@ Use exactly this format:
     st.write("")
 
 
-    # =====================================================
-    # VOICE ANSWER
-    # =====================================================
+  
 
     st.markdown(" Your Answer")
 
@@ -695,10 +674,6 @@ Use exactly this format:
         key=f"mock_audio_{current}"
     )
 
-
-    # =====================================================
-    # PROCESS ANSWER
-    # =====================================================
 
     if audio:
 
@@ -716,15 +691,14 @@ Use exactly this format:
         ):
 
             with st.spinner(
-                "🎧 Listening and evaluating your answer..."
+                "Listening and evaluating your answer..."
             ):
 
                 try:
 
-                    # -----------------------------------------
                     # Convert Streamlit UploadedFile
                     # to seekable BytesIO
-                    # -----------------------------------------
+                
 
                     audio_bytes = audio.getvalue()
 
@@ -743,10 +717,7 @@ Use exactly this format:
                             "mime_type": "audio/wav"
                         }
                     )
-                    # -----------------------------------------
-                    # ONE AI CALL:
-                    # TRANSCRIPTION + EVALUATION
-                    # -----------------------------------------
+                  
 
                     evaluation_prompt = f"""
 You are an expert placement interviewer.
@@ -814,9 +785,7 @@ Use exactly this format:
 
                     result = response.text.strip()
 
-                    # -----------------------------------------
-                    # CLEAN RESPONSE
-                    # -----------------------------------------
+                   
 
                     result = result.replace(
                         "```json",
@@ -840,9 +809,7 @@ Use exactly this format:
                     evaluation = json.loads(result)
 
 
-                    # -----------------------------------------
-                    # SAVE RESULT
-                    # -----------------------------------------
+                   
 
                     evaluation["question"] = question
 
@@ -860,9 +827,7 @@ Use exactly this format:
                     st.session_state.mock_audio_processed = True
 
 
-                    # -----------------------------------------
-                    # SHOW TRANSCRIPTION
-                    # -----------------------------------------
+             
 
                     st.success(
                         "Your answer has been analyzed!"
@@ -880,10 +845,7 @@ Use exactly this format:
                     )
 
 
-                    # -----------------------------------------
-                    # SCORE
-                    # -----------------------------------------
-
+                 
                     score = int(
                         evaluation.get(
                             "score",
@@ -914,9 +876,7 @@ Use exactly this format:
                         )
 
 
-                    # -----------------------------------------
-                    # FEEDBACK
-                    # -----------------------------------------
+             
 
                     st.markdown(
                         "Feedback"
@@ -929,10 +889,6 @@ Use exactly this format:
                         )
                     )
 
-
-                    # -----------------------------------------
-                    # STRENGTHS
-                    # -----------------------------------------
 
                     strengths = evaluation.get(
                         "strengths",
@@ -951,10 +907,6 @@ Use exactly this format:
                                 f"- {item}"
                             )
 
-
-                    # -----------------------------------------
-                    # IMPROVEMENTS
-                    # -----------------------------------------
 
                     improvements = evaluation.get(
                         "improvements",
@@ -1003,11 +955,6 @@ Use exactly this format:
                         st.error(
                             f"Error processing audio: {str(e)}"
                         )
-
-
-    # =====================================================
-    # NEXT QUESTION
-    # =====================================================
 
     if (
         st.session_state.mock_audio_processed
