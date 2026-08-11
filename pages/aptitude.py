@@ -40,13 +40,29 @@ def aptitude():
     # LOAD GEMINI API
 
 
+    # load_dotenv()
+
+    # api_key = os.getenv("GEMINI_API_KEY")
+
+    # if not api_key:
+    #     st.error("GEMINI_API_KEY not found in .env")
+    #     st.stop()
+
     load_dotenv()
 
     api_key = os.getenv("GEMINI_API_KEY")
 
     if not api_key:
-        st.error("GEMINI_API_KEY not found in .env")
+        try:
+            api_key = st.secrets["GEMINI_API_KEY"]
+        except Exception:
+            api_key = None
+
+    if not api_key:
+        st.error("GEMINI_API_KEY is not configured.")
         st.stop()
+
+    client = genai.Client(api_key=api_key)
 
     client = genai.Client(api_key=api_key)
 
