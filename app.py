@@ -324,7 +324,7 @@ if selected == "Upload Resume":
     
 elif selected == "Job Matcher":
     job_matcher()
-elif selected == "Career Roadmap":
+elif selected == "Interview Roadmap":
     map()
 
 elif selected == "Interview Guide":
