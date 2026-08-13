@@ -270,7 +270,7 @@ with st.sidebar:
         options=[
             "Upload Resume",
             "Job Matcher",
-            "Career Roadmap",
+            "Interview Roadmap",
             "Interview Guide",
             "AI Assistant",
             "Interview Hub",
