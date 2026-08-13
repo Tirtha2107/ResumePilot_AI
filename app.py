@@ -268,7 +268,7 @@ with st.sidebar:
         menu_title=None,
 
         options=[
-            "Upload Resume",
+            "Resume Analyzer",
             "Job Matcher",
             "Interview Roadmap",
             "Interview Guide",
@@ -319,7 +319,7 @@ with st.sidebar:
         }
     )
 
-if selected == "Upload Resume":
+if selected == "Resume Analyzer":
     resume()
     
 elif selected == "Job Matcher":
