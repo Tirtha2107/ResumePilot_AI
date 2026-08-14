@@ -5,13 +5,13 @@
 .env.*
 !.env.example
 
-# =========================
-# Database
-# =========================
-database/
-*.db
-*.sqlite
-*.sqlite3
+# # =========================
+# # Database
+# # =========================
+# database/
+# *.db
+# *.sqlite
+# *.sqlite3
 
 # =========================
 # Virtual Environment
